@@ -28,7 +28,7 @@ NewProjectAudioProcessor::~NewProjectAudioProcessor()
 {
 }
 
-//==============================================================================
+//=============================================================================
 const juce::String NewProjectAudioProcessor::getName() const
 {
     return JucePlugin_Name;
