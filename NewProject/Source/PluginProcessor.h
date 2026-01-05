@@ -17,18 +17,18 @@ class DelayAudioProcessor  : public juce::AudioProcessor
 {
 public:
     //==============================================================================
-    DelayAudioProcessor();
-    ~DelayAudioProcessor() override;
+    DelayAudioProcessor(); //Constructor as it has same name as class (loads into computer's memeory)
+    ~DelayAudioProcessor() override; // '~' represents a deconstructor that removes plugin from computer memory
 
     //==============================================================================
-    void prepareToPlay (double sampleRate, int samplesPerBlock) override;
-    void releaseResources() override;
+    void prepareToPlay (double sampleRate, int samplesPerBlock) override; //reserves free space in computer memory
+    void releaseResources() override; //opposite of above funtion. Called when host stops playing audio 
 
    #ifndef JucePlugin_PreferredChannelConfigurations
-    bool isBusesLayoutSupported (const BusesLayout& layouts) const override;
+    bool isBusesLayoutSupported (const BusesLayout& layouts) const override; //Transports audio data to and from via a bus
    #endif
 
-    void processBlock (juce::AudioBuffer<float>&, juce::MidiBuffer&) override;
+    void processBlock (juce::AudioBuffer<float>&, juce::MidiBuffer&) override; //Most used function! All DSP code goes here
 
     //==============================================================================
     juce::AudioProcessorEditor* createEditor() override;
@@ -51,7 +51,7 @@ public:
 
     //==============================================================================
     void getStateInformation (juce::MemoryBlock& destData) override;
-    void setStateInformation (const void* data, int sizeInBytes) override;
+    void setStateInformation (const void* data, int sizeInBytes) override; //these to save and store plugin paramater information so loads when DAW is opened and closed
 
 private:
     //==============================================================================
