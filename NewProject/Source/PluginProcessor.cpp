@@ -138,6 +138,9 @@ void DelayAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, [[mayb
    
     //buffer.applyGain(0.9f); //cuts volume in half
 
+    float gainInDecibels = -0.6f;
+
+    float gain = juce::Decibels::decibelsToGain(gainInDecibels); //Converts gain to linear units
 
     //Adjust gain with for loop
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
@@ -146,7 +149,7 @@ void DelayAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, [[mayb
 
         for (int sample = 0; sample < buffer.getNumSamples(); ++sample)
         {
-            channelData[sample] = channelData[sample] * 0.5f;
+            channelData[sample] = channelData[sample] *= gain;
         }
     }
 }
