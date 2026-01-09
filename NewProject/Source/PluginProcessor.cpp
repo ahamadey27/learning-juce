@@ -180,6 +180,19 @@ void DelayAudioProcessor::setStateInformation (const void* data, int sizeInBytes
 }
 
 //==============================================================================
+juce::AudioProcessorValueTreeState::ParameterLayout DelayAudioProcessor::createParameterLayout()
+{
+    juce::AudioProcessorValueTreeState::ParameterLayout layout;
+
+    layout.add(std::make_unique<juce::AudioParameterFloat>(
+        juce::ParameterID{ "gain", 1 },
+        "Output Gain",
+        juce::NormalisableRange<float> {-12.0f, 12.0f},
+        0.0f));
+
+    return layout;
+}
+//==============================================================================
 // This creates new instances of the plugin..
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {

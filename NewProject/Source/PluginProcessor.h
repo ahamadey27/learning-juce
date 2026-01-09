@@ -54,6 +54,12 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override; //these to save and store plugin paramater information so loads when DAW is opened and closed
 
 private:
-    //==============================================================================
+    juce::AudioProcessorValueTreeState apvts
+    {
+        *this, nullptr, "Parameters", createParameterLayout()
+    };
+
+    juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DelayAudioProcessor)
 };
