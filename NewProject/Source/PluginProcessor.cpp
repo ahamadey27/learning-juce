@@ -182,14 +182,14 @@ void DelayAudioProcessor::setStateInformation (const void* data, int sizeInBytes
 //==============================================================================
 juce::AudioProcessorValueTreeState::ParameterLayout DelayAudioProcessor::createParameterLayout()
 {
-    juce::AudioProcessorValueTreeState::ParameterLayout layout;
+    juce::AudioProcessorValueTreeState::ParameterLayout layout; //This is a constructor...a special function that makes room for the object's in memory and initializes it
 
     //creating a new juce AudioParameterFloat object..descripbes actual plugin parameter and what will be used for actual audio processing and takes 4 arguments
     layout.add(std::make_unique<juce::AudioParameterFloat>( 
-        juce::ParameterID{ "gain", 1 },
-        "Output Gain",
-        juce::NormalisableRange<float> {-12.0f, 12.0f},
-        0.0f));
+        juce::ParameterID{ "gain", 1 }, //gives unique identifyer as string...1 argument is a "version hint" a
+        "Output Gain", //name of output parameter as string 
+        juce::NormalisableRange<float> {-12.0f, 12.0f}, //Range is expressed in float values between -12 and 12
+        0.0f)); //Float argument is string paramater 
 
     return layout;
 }
