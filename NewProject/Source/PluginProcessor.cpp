@@ -10,18 +10,15 @@
 #include "PluginEditor.h"
 
 //==============================================================================
-DelayAudioProcessor::DelayAudioProcessor()
-#ifndef JucePlugin_PreferredChannelConfigurations
-     : AudioProcessor (BusesProperties()
-                     #if ! JucePlugin_IsMidiEffect
-                      #if ! JucePlugin_IsSynth
-                       .withInput  ("Input",  juce::AudioChannelSet::stereo(), true)
-                      #endif
-                       .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
-                     #endif
-                       )
-#endif
+DelayAudioProcessor::DelayAudioProcessor() : //Constructor
+    AudioProcessor(
+        BusesProperties()
+        .withInput("Input", juce::AudioChannelSet::stereo(), true)
+        .withOutput("Output", juce::AudioChannelSet::stereo(), true)
+    )
 {
+    auto* param = apvts.getParameter(gainParamID.getParamID());
+    gainParam = dynamic_cast<juce::AudioParameterFloat*>(param);
 }
 
 DelayAudioProcessor::~DelayAudioProcessor()
@@ -138,7 +135,7 @@ void DelayAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, [[mayb
    
     //buffer.applyGain(0.9f); //cuts volume in half
 
-    float gainInDecibels = apvts.getRawParameterValue(gainParamID.getParamID())->load(); //enbales code in createParameterLayout function
+    float gainInDecibels = gainParam->get(); //enbales code in createParameterLayout function
 
     float gain = juce::Decibels::decibelsToGain(gainInDecibels); //Converts gain to linear units
 
