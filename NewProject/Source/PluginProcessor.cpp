@@ -1,4 +1,4 @@
-/*
+﻿/*
   ==============================================================================
 
     This file contains the basic framework code for a JUCE plugin processor.
@@ -138,7 +138,7 @@ void DelayAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, [[mayb
    
     //buffer.applyGain(0.9f); //cuts volume in half
 
-    float gainInDecibels = -0.6f;
+    float gainInDecibels = apvts.getRawParameterValue("gain")->load(); //enbales code in createParameterLayout function
 
     float gain = juce::Decibels::decibelsToGain(gainInDecibels); //Converts gain to linear units
 
@@ -180,6 +180,7 @@ void DelayAudioProcessor::setStateInformation (const void* data, int sizeInBytes
 }
 
 //==============================================================================
+//AudioProcessorValueTreeState defines, stores, synchronizes, and automates plugin parameters, while safely connecting DSP ↔ host ↔ UI.
 juce::AudioProcessorValueTreeState::ParameterLayout DelayAudioProcessor::createParameterLayout()
 {
     juce::AudioProcessorValueTreeState::ParameterLayout layout; //This is a constructor...a special function that makes room for the object's in memory and initializes it
