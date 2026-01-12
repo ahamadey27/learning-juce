@@ -184,7 +184,8 @@ juce::AudioProcessorValueTreeState::ParameterLayout DelayAudioProcessor::createP
 {
     juce::AudioProcessorValueTreeState::ParameterLayout layout;
 
-    layout.add(std::make_unique<juce::AudioParameterFloat>(
+    //creating a new juce AudioParameterFloat object..descripbes actual plugin parameter and what will be used for actual audio processing and takes 4 arguments
+    layout.add(std::make_unique<juce::AudioParameterFloat>( 
         juce::ParameterID{ "gain", 1 },
         "Output Gain",
         juce::NormalisableRange<float> {-12.0f, 12.0f},
