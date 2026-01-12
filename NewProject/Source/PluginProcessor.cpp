@@ -138,7 +138,7 @@ void DelayAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, [[mayb
    
     //buffer.applyGain(0.9f); //cuts volume in half
 
-    float gainInDecibels = apvts.getRawParameterValue("gain")->load(); //enbales code in createParameterLayout function
+    float gainInDecibels = apvts.getRawParameterValue(gainParamID.getParamID())->load(); //enbales code in createParameterLayout function
 
     float gain = juce::Decibels::decibelsToGain(gainInDecibels); //Converts gain to linear units
 
@@ -187,7 +187,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout DelayAudioProcessor::createP
 
     //creating a new juce AudioParameterFloat object..descripbes actual plugin parameter and what will be used for actual audio processing and takes 4 arguments
     layout.add(std::make_unique<juce::AudioParameterFloat>( 
-        juce::ParameterID{ "gain", 1 }, //gives unique identifyer as string...1 argument is a "version hint" a
+        gainParamID, //Constant for gain juce::paramterID at top of PluginProcessor.h
         "Output Gain", //name of output parameter as string 
         juce::NormalisableRange<float> {-12.0f, 12.0f}, //Range is expressed in float values between -12 and 12
         0.0f)); //Float argument is string paramater 

@@ -10,6 +10,9 @@
 
 #include <JuceHeader.h>
 
+//Constants 
+const juce::ParameterID gainParamID{ "gain", 1 };
+
 //==============================================================================
 /**
 */
