@@ -50,8 +50,20 @@ juce_add_plugin(Delay
     COPY_PLUGIN_AFTER_BUILD     TRUE
 )
 
+juce_generate_juce_header(Delay)
+
 target_sources(Delay PRIVATE
+    Source/PluginProcessor.h
     Source/PluginProcessor.cpp
+    Source/PluginEditor.h
+    Source/PluginEditor.cpp
+)
+
+# Group your source files under "Source" in the Xcode navigator
+source_group("Source" FILES
+    Source/PluginProcessor.h
+    Source/PluginProcessor.cpp
+    Source/PluginEditor.h
     Source/PluginEditor.cpp
 )
 
