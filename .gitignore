@@ -7,6 +7,34 @@
 Builds/
 JuceLibraryCode/
 
+# CMake build directories
+build/
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+CTestTestfile.cmake
+_deps/
+
+# Xcode
+*.xcodeproj/
+*.xcworkspace/
+xcuserdata/
+*.xccheckout
+*.xcscmblueprint
+DerivedData/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+*.dmg
+*.pkg
+
+# Windows executables (not needed on Mac)
+*.exe
+
 # User-specific files
 *.rsuser
 *.suo
